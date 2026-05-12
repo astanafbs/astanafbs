@@ -1,0 +1,63 @@
+{
+  "name": "astanafbs",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "workspaces": [
+    "apps/api",
+    "apps/admin"
+  ],
+  "scripts": {
+    "start": "expo start",
+    "dev-client": "expo start --dev-client",
+    "ios:metro": "expo start --dev-client --localhost -c",
+    "ios:reset-sim": "osascript -e 'tell application \"Simulator\" to quit' 2>/dev/null || true; killall Simulator 2>/dev/null || true; killall -9 com.apple.CoreSimulator.CoreSimulatorService launchd_sim SimMetalHost SimRenderServer 2>/dev/null || true; sleep 3; xcrun simctl shutdown all 2>/dev/null || true",
+    "ios:dev-build": "LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 npx expo run:ios --device \"iPhone 16 Pro\"",
+    "ios:open": "xcrun simctl openurl booted 'billiardhub://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081'",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "api:dev": "npm --workspace apps/api run dev",
+    "api:check": "npm --workspace apps/api run check",
+    "api:build": "npm --workspace apps/api run build",
+    "admin:dev": "npm --workspace apps/admin run dev",
+    "admin:check": "npm --workspace apps/admin run check",
+    "admin:build": "npm --workspace apps/admin run build",
+    "check": "npx tsc --noEmit && npm run api:check && npm run admin:check && npx expo-doctor",
+    "build:dev:ios": "eas build --profile development --platform ios",
+    "build:dev:android": "eas build --profile development --platform android",
+    "build:prod:ios": "eas build --profile production --platform ios",
+    "build:prod:android": "eas build --profile production --platform android",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "infra:logs": "docker compose logs -f",
+    "infra:ps": "docker compose ps"
+  },
+  "dependencies": {
+    "@react-native-firebase/app": "^24.0.0",
+    "@react-native-firebase/auth": "^24.0.0",
+    "@react-native-google-signin/google-signin": "^16.1.2",
+    "@tamagui/config": "^2.0.0-rc.41",
+    "expo": "~54.0.33",
+    "expo-constants": "~18.0.13",
+    "expo-dev-client": "~6.0.21",
+    "expo-device": "~8.0.10",
+    "expo-linking": "~8.0.12",
+    "expo-notifications": "~0.32.17",
+    "expo-router": "~6.0.23",
+    "expo-status-bar": "~3.0.9",
+    "lucide-react-native": "^1.14.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-web": "^0.21.0",
+    "tamagui": "^2.0.0-rc.41"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.0",
+    "typescript": "~5.9.2"
+  },
+  "private": true
+}

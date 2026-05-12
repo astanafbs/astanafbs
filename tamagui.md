@@ -1,0 +1,45 @@
+---
+title: Introduction
+---
+
+<DocsIntro />
+
+<GetStarted />
+
+#### Highlights
+
+<Highlights
+  disableLinks
+  disableTitle
+  large
+  features={[
+    `Core only has one dependency - React - but supports the full React Native View and Text API, a superset of the React Native Style API, styled(), powerful hooks, and the typed design system helpers in ~28Kb on web.`,
+    `A smart, partial-evaluating compiler gives 0-runtime performance with the ergonomics of writing your code however you want - even inline, logic-filled code is optimized.`,
+    `Every feature works at runtime and compile-time, so none of the usual limits of 0-runtime libraries, while optionally getting the same great performance.`,
+    `useTheme and useMedia hooks with signal-like granularity and dirty tracking.`,
+    `Unstyled and styled versions of all components.`,
+  ]}
+/>
+
+---
+
+## Community
+
+Join us on:
+
+- [Discord](https://discord.gg/4qh6tdcVDa)
+- [X](https://x.com/tamagui_js)
+- [GitHub](https://github.com/tamagui/tamagui)
+
+---
+
+## Credits
+
+A big thanks to:
+
+- [Stitches](https://stitches.dev) for the variants pattern.
+- [JSXStyle](https://github.com/jsxstyle/jsxstyle) for providing the original
+  version of the compiler.
+- [Modulz](https://github.com/modulz) for Radix of which we've adopted many APIs, and for the initial structure for this website.
+- [Framer Motion](https://github.com/framer/motion) for the AnimatePresence
+  implementation.
