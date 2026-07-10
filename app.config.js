@@ -6,6 +6,7 @@ const easProjectId =
 module.exports = {
   expo: {
     name: 'BilliardHUB',
+    owner: 'armanualys-team',
     slug: 'billiardhub',
     version: '1.0.0',
     scheme: 'billiardhub',
