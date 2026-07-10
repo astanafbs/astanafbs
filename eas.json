@@ -13,14 +13,14 @@
       "distribution": "internal",
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://75.119.131.165:3000"
+        "EXPO_PUBLIC_API_URL": "https://api.75.119.131.165.sslip.io"
       }
     },
     "apk": {
       "distribution": "internal",
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://75.119.131.165:3000"
+        "EXPO_PUBLIC_API_URL": "https://api.75.119.131.165.sslip.io"
       },
       "android": {
         "buildType": "apk"
@@ -29,7 +29,7 @@
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://75.119.131.165:3000"
+        "EXPO_PUBLIC_API_URL": "https://api.75.119.131.165.sslip.io"
       },
       "ios": {
         "resourceClass": "m-medium"
