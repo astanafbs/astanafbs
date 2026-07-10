@@ -1,5 +1,5 @@
 DO $$ BEGIN
-  CREATE TYPE user_role AS ENUM ('player', 'club_owner', 'organizer', 'admin');
+  CREATE TYPE user_role AS ENUM ('user', 'club_admin', 'superadmin', 'player', 'club_owner', 'organizer', 'admin');
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 

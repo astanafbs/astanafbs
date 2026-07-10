@@ -43,6 +43,7 @@ Production проверка и сборки:
 
 ```bash
 npm run check
+npm run build:apk:android
 npm run build:prod:ios
 npm run build:prod:android
 ```
@@ -241,7 +242,7 @@ Mobile app:
 
 - приложение называется `BilliardHUB`;
 - bundle id/package: `kz.fbsastana.app`;
-- splash screen использует `assets/preview.jpg`;
+- splash screen использует полноэкранную картинку `assets/previewlogo.png`;
 - Expo Router навигация с нижними табами;
 - основные табы: Главная, Турниры, Рейтинг, Дуэли, Профиль;
 - базовый дизайн на Tamagui и shared UI компонентах;
@@ -250,10 +251,10 @@ Mobile app:
 - рейтинг: общий список игроков и карточки игроков;
 - дуэли: список, история, создание вызова через modal route;
 - профиль: данные игрока, история, рейтинг, настройки;
-- дополнительные разделы: клубы, трансляции, объявления, магазин;
+- дополнительные разделы: клубы, трансляции, объявления, тренировочный дневник;
 - legal pages: Privacy Policy и Terms of Use;
 - на регистрации и заявке на турнир есть ссылки на Privacy Policy и Terms of Use;
-- моковые данные заполнены под Казахстан: Астана, Алматы, Шымкент, Караганда.
+- интерфейс берет бизнес-данные из backend API; стартовые данные лежат в PostgreSQL seed.
 
 Backend API:
 
@@ -261,7 +262,7 @@ Backend API:
 - PostgreSQL connection;
 - dev-auth режим для локальной разработки;
 - endpoints для пользователя, профиля, турниров, регистраций, рейтинга, дуэлей;
-- endpoints для клубов, трансляций, объявлений, товаров;
+- endpoints для клубов, трансляций, объявлений, товаров, новостей и тренировочного дневника;
 - presigned upload flow под S3-compatible storage;
 - admin endpoints для dashboard summary и CRUD-разделов;
 - заготовка под Firebase token verification.
@@ -270,7 +271,7 @@ Admin panel:
 
 - Next.js приложение;
 - dashboard;
-- страницы управления турнирами, новостями, пользователями, клубами, объявлениями, товарами, матчами и push campaigns;
+- страницы управления турнирами, новостями, пользователями, клубами, объявлениями, товарами, матчами, тренировочным дневником и push campaigns;
 - подключение к backend через `API_INTERNAL_URL` / `NEXT_PUBLIC_API_URL`;
 - admin token через `ADMIN_API_TOKEN`.
 
@@ -278,6 +279,7 @@ Infrastructure:
 
 - Docker Compose для PostgreSQL, MinIO, Adminer;
 - init schema для PostgreSQL;
+- миграции для существующей базы: `npm run db:migrate`;
 - MinIO bucket создается автоматически;
 - `.env.example` содержит локальные переменные.
 

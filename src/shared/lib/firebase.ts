@@ -1,1 +1,1 @@
-export { default as firebaseAuth } from '@react-native-firebase/auth';
+export const firebaseAuth = null;

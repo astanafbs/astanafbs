@@ -1,56 +1,34 @@
 import { useLocalSearchParams } from 'expo-router';
-import { Text, XStack, YStack } from 'tamagui';
+import { Text } from 'tamagui';
 
 import { Screen } from '../../../src/components/Screen';
+import { TournamentBracketCanvas } from '../../../src/components/TournamentBracketCanvas';
 import { Badge, Card, SectionHeader, typography } from '../../../src/components/ui';
-import { players, tournaments } from '../../../src/data/mock';
-import { colors, radius, spacing } from '../../../src/theme';
-
-const rounds = ['1/8', '1/4', '1/2', 'Финал'];
+import { getTournament, getTournamentMatches } from '../../../src/entities/tournament/api';
+import { labelFor, tournamentFormatLabels } from '../../../src/shared/lib/labels';
+import { useApiResource } from '../../../src/shared/lib/useApiResource';
+import { spacing } from '../../../src/theme';
 
 export default function TournamentBracketScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const tournament = tournaments.find((item) => item.id === id) ?? tournaments[0];
+  const tournamentState = useApiResource(() => getTournament(id).then((result) => result.data), [id]);
+  const matchesState = useApiResource(() => getTournamentMatches(id).then((result) => result.data), [id]);
+  const tournament = tournamentState.data;
 
   return (
     <Screen title="Сетка">
       <Card tone="dark">
-        <Badge label="online bracket" tone="green" />
+        <Badge label={labelFor(tournamentFormatLabels, tournament?.tournament_format)} tone="green" />
         <Text {...typography.inverseTitle} marginTop={spacing.md}>
-          {tournament.title}
+          {tournament?.title ?? 'Турнир'}
         </Text>
       </Card>
 
-      <SectionHeader title="Турнирная сетка" />
-      {rounds.map((round, roundIndex) => (
-        <Card key={round}>
-          <Text {...typography.title}>{round}</Text>
-          {[0, 1].map((matchIndex) => {
-            const player = players[(roundIndex + matchIndex) % players.length];
-            return (
-              <XStack
-                key={`${round}-${matchIndex}`}
-                alignItems="center"
-                justifyContent="space-between"
-                marginTop={spacing.sm}
-                padding={spacing.sm}
-                borderRadius={radius.sm}
-                backgroundColor={colors.chipDark}
-                borderWidth={1}
-                borderColor={colors.borderSoft}
-              >
-                <YStack>
-                  <Text color={colors.textPrimary} fontSize={14} fontWeight="600">
-                    {player.name}
-                  </Text>
-                  <Text {...typography.meta}>Стол {matchIndex + 1}</Text>
-                </YStack>
-                <Badge label={roundIndex < 2 ? 'scheduled' : 'pending'} tone="warning" />
-              </XStack>
-            );
-          })}
-        </Card>
-      ))}
+      <SectionHeader title={tournament?.tournament_format === 'single_elimination' ? 'Турнирная сетка' : 'Туры и пары'} />
+      <Card>
+        {matchesState.error ? <Text {...typography.body}>{matchesState.error}</Text> : null}
+        <TournamentBracketCanvas matches={matchesState.data ?? []} tournamentFormat={tournament?.tournament_format} />
+      </Card>
     </Screen>
   );
 }

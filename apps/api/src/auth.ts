@@ -87,6 +87,18 @@ export async function upsertUser(identity: AuthIdentity) {
     [user.id],
   );
 
+  await query(
+    `
+      INSERT INTO user_entitlements (user_id, feature, starts_at, ends_at, status)
+      VALUES
+        ($1, 'app_access', now(), now() + interval '30 days', 'active'),
+        ($1, 'stream_watch', now(), now() + interval '30 days', 'active'),
+        ($1, 'listing_publish', now(), now() + interval '7 days', 'active')
+      ON CONFLICT (user_id, feature) DO NOTHING
+    `,
+    [user.id],
+  );
+
   return user;
 }
 

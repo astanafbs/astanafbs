@@ -13,7 +13,6 @@ export default async function AdminDashboard() {
     <AdminShell
       title="Операционная панель"
       subtitle="Турниры, новости, пользователи, объявления, товары и push-рассылки."
-      action={<Link className="button" href="/tournaments">Создать турнир</Link>}
     >
       {'error' in data ? (
         <section className="card dark">
@@ -22,14 +21,14 @@ export default async function AdminDashboard() {
         </section>
       ) : (
         <>
-          <section className="grid">
+          <section className="grid dashboard-metrics">
             {[
               ['Турниры', data.summary.tournaments, '/tournaments'],
+              ['Трансляции', data.summary.streams, '/streams'],
               ['Новости', data.summary.news, '/news'],
               ['Пользователи', data.summary.users, '/users'],
               ['Объявления', data.summary.listings, '/listings'],
               ['Товары', data.summary.products, '/products'],
-              ['Push tokens', data.summary.push_tokens, '/push'],
             ].map(([label, value, href]) => (
               <Link className="card" href={href} key={label}>
                 <p className="muted">{label}</p>

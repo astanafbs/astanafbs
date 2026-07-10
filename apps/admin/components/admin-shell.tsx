@@ -1,14 +1,17 @@
-import Link from 'next/link';
+import { AdminNav } from './admin-nav';
 
-const nav = [
+const nav: Array<[string, string]> = [
   ['/', 'Dashboard'],
   ['/tournaments', 'Турниры'],
   ['/matches', 'Матчи'],
+  ['/streams', 'Трансляции'],
   ['/news', 'Новости'],
   ['/clubs', 'Клубы'],
   ['/users', 'Пользователи'],
+  ['/profile-statuses', 'Статусы'],
   ['/listings', 'Объявления'],
   ['/products', 'Товары'],
+  ['/training', 'Дневник'],
   ['/push', 'Push'],
 ];
 
@@ -26,20 +29,14 @@ export function AdminShell({
   return (
     <main className="shell">
       <aside className="sidebar">
-        <div className="brand">FBS</div>
-        <nav className="nav">
-          {nav.map(([href, label]) => (
-            <Link href={href} key={href}>
-              {label}
-            </Link>
-          ))}
-        </nav>
+        <div className="brand">BilliardHub</div>
+        <AdminNav items={nav} />
       </aside>
 
       <section className="main">
         <div className="topbar">
           <div>
-            <p className="eyebrow">FBS Astana Admin</p>
+            <p className="eyebrow">BilliardHub</p>
             <h1>{title}</h1>
             <p className="muted">{subtitle}</p>
           </div>

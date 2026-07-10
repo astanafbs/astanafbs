@@ -3,34 +3,46 @@ import { Text, XStack, YStack } from 'tamagui';
 
 import { Screen } from '../../src/components/Screen';
 import { Avatar, Badge, Card, InfoGrid, PrimaryButton, SectionHeader, typography } from '../../src/components/ui';
-import { players } from '../../src/data/mock';
+import { getPlayer } from '../../src/entities/player/api';
+import { useApiResource } from '../../src/shared/lib/useApiResource';
 import { colors, spacing } from '../../src/theme';
 
 export default function PlayerProfileScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const player = players.find((item) => item.id === id) ?? players[0];
+  const { data: player, error } = useApiResource(() => getPlayer(id).then((result) => result.data), [id]);
+  const winPercent = player?.win_percentage ?? 0;
+
+  if (!player) {
+    return (
+      <Screen title="Игрок">
+        <Card><Text {...typography.body}>{error ?? 'Загружаем игрока...'}</Text></Card>
+      </Screen>
+    );
+  }
 
   return (
     <Screen title="Игрок">
       <Card tone="dark">
         <XStack alignItems="center" gap={spacing.md}>
-          <Avatar initials={player.name.slice(0, 2).toUpperCase()} />
+          <Avatar initials={player.display_name.slice(0, 2).toUpperCase()} />
           <YStack flex={1}>
-            <Text {...typography.inverseTitle}>{player.name}</Text>
-            <Text {...typography.inverseBody}>{player.club}</Text>
+            <Text {...typography.inverseTitle}>{player.display_name}</Text>
+            <Text {...typography.inverseBody}>{player.club_name ?? player.city ?? '-'}</Text>
           </YStack>
         </XStack>
       </Card>
       <Card>
         <InfoGrid
           items={[
-            { label: 'Рейтинг', value: player.score },
-            { label: 'Тренд', value: player.trend },
-            { label: 'Город', value: 'Астана' },
-            { label: 'Игры', value: 42 },
+            { label: 'Общий рейтинг', value: player.rating },
+            { label: '% побед', value: `${winPercent}%` },
+            { label: 'Уровень', value: player.skill_level ?? '-' },
+            { label: 'Статус', value: player.profile_status_label ?? '-' },
+            { label: 'Звания', value: player.titles?.join(', ') || 'нет' },
+            { label: 'Игры', value: player.wins + player.losses },
           ]}
         />
-        <PrimaryButton label="Вызвать на дуэль" />
+        <PrimaryButton label="Вызвать на дуэль" href={`/modals/challenge-player?opponentId=${player.id}`} />
       </Card>
 
       <SectionHeader title="История игр" />

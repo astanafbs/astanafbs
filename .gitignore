@@ -13,6 +13,7 @@ out/
 dist/
 web-build/
 expo-env.d.ts
+builds/android/*.apk
 
 # Native
 .kotlin/
@@ -25,6 +26,8 @@ expo-env.d.ts
 
 # Metro
 .metro-health-check*
+
+example
 
 # debug
 npm-debug.*

@@ -10,12 +10,15 @@ export type DuelStatus =
 
 export type Duel = {
   id: string;
-  challengerId: string;
-  opponentId: string;
+  challenger_id: string;
+  opponent_id: string;
+  challenger_name?: string | null;
+  opponent_name?: string | null;
   status: DuelStatus;
-  clubId?: string;
-  scheduledAt?: string;
-  score?: string;
-  winnerId?: string;
-  ratingDelta?: number;
+  club_id?: string | null;
+  club_name?: string | null;
+  scheduled_at?: string | null;
+  score?: string | null;
+  winner_id?: string | null;
+  rating_delta?: number | null;
 };

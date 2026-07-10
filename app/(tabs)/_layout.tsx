@@ -2,17 +2,20 @@ import { Tabs } from 'expo-router';
 
 import type { AppIconName } from '../../src/components/ui';
 import { AppIcon } from '../../src/components/ui';
+import { useI18n } from '../../src/shared/lib/i18n';
 import { colors } from '../../src/theme';
 
 const icons: Record<string, AppIconName> = {
   home: 'home',
   tournaments: 'tournament',
   rating: 'ratingList',
-  duels: 'battleCueBalls',
+  duels: 'match',
   profile: 'profileUser',
 };
 
 export default function TabsLayout() {
+  const { t } = useI18n();
+
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -36,11 +39,11 @@ export default function TabsLayout() {
       })}
       initialRouteName="home"
     >
-      <Tabs.Screen name="home" options={{ title: 'Главная' }} />
-      <Tabs.Screen name="tournaments" options={{ title: 'Турниры' }} />
-      <Tabs.Screen name="rating" options={{ title: 'Рейтинг' }} />
-      <Tabs.Screen name="duels" options={{ title: 'Дуэли' }} />
-      <Tabs.Screen name="profile" options={{ title: 'Профиль' }} />
+      <Tabs.Screen name="home" options={{ title: t('tabs.home') }} />
+      <Tabs.Screen name="tournaments" options={{ title: t('tabs.tournaments') }} />
+      <Tabs.Screen name="rating" options={{ title: t('tabs.rating') }} />
+      <Tabs.Screen name="duels" options={{ title: t('tabs.duels') }} />
+      <Tabs.Screen name="profile" options={{ title: t('tabs.profile') }} />
     </Tabs>
   );
 }

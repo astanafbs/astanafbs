@@ -1,25 +1,19 @@
+import { LanguageSelector } from '../../src/components/LanguageSelector';
+import { Screen } from '../../src/components/Screen';
+import { Card, SectionHeader, typography } from '../../src/components/ui';
+import { useI18n } from '../../src/shared/lib/i18n';
 import { Text } from 'tamagui';
 
-import { Screen } from '../../src/components/Screen';
-import { Badge, Card, PrimaryButton, SectionHeader, typography } from '../../src/components/ui';
-import { spacing } from '../../src/theme';
-
 export default function LanguageSettingsScreen() {
+  const { t } = useI18n();
+
   return (
-    <Screen title="Язык">
-      <SectionHeader title="Доступные языки" />
-      {[
-        ['Русский', 'ru'],
-        ['Қазақша', 'kk'],
-      ].map(([label, code]) => (
-        <Card key={code}>
-          <Badge label={code} tone={code === 'ru' ? 'green' : 'neutral'} />
-          <Text {...typography.title} marginTop={spacing.md}>
-            {label}
-          </Text>
-        </Card>
-      ))}
-      <PrimaryButton label="Применить" />
+    <Screen title={t('language.title')}>
+      <SectionHeader title={t('settings.languageAvailable')} />
+      <Card>
+        <Text {...typography.body}>{t('language.select')}</Text>
+        <LanguageSelector />
+      </Card>
     </Screen>
   );
 }

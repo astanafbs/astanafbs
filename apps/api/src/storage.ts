@@ -1,4 +1,4 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 import { env } from './env.js';
@@ -40,4 +40,13 @@ export async function createPresignedUploadUrl({
     method: 'PUT' as const,
     expiresIn: 300,
   };
+}
+
+export async function getStorageObject(key: string) {
+  const command = new GetObjectCommand({
+    Bucket: env.s3Bucket,
+    Key: key,
+  });
+
+  return s3.send(command);
 }

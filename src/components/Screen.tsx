@@ -82,7 +82,8 @@ export function Screen({ title, eyebrow = 'BilliardHUB', right, children }: Scre
           contentContainerStyle={{
             padding: spacing.lg,
             paddingBottom: 112,
-          }}
+            boxSizing: 'border-box',
+          } as never}
         >
           {children}
         </ScrollView>

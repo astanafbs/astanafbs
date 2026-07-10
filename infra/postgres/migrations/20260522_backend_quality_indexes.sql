@@ -1,0 +1,11 @@
+CREATE INDEX IF NOT EXISTS idx_tournaments_club_id ON tournaments(club_id);
+CREATE INDEX IF NOT EXISTS idx_tournament_registrations_tournament_id ON tournament_registrations(tournament_id);
+CREATE INDEX IF NOT EXISTS idx_tournament_registrations_user_id ON tournament_registrations(user_id);
+CREATE INDEX IF NOT EXISTS idx_matches_players ON matches(player_a_id, player_b_id);
+CREATE INDEX IF NOT EXISTS idx_news_posts_status_published_at ON news_posts(status, published_at DESC, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_streams_status_starts_at ON streams(status, starts_at DESC, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_duels_players ON duels(challenger_id, opponent_id);
+CREATE INDEX IF NOT EXISTS idx_listings_user_id ON listings(user_id);
+CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders(user_id);
+CREATE INDEX IF NOT EXISTS idx_orders_product_id ON orders(product_id);
+CREATE INDEX IF NOT EXISTS idx_push_tokens_user_id ON push_tokens(user_id);

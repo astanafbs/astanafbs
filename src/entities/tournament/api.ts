@@ -34,4 +34,8 @@ export async function getTournamentPlayers(id: string) {
   return apiFetch<ApiList<TournamentPlayer>>(`/tournaments/${id}/players`);
 }
 
+export async function getTournamentMatches(id: string) {
+  return apiFetch<ApiList<TournamentMatch>>(`/tournaments/${id}/matches`);
+}
+
 export type TournamentMatchResponse = ApiList<TournamentMatch>;

@@ -4,6 +4,7 @@ import { Image } from 'react-native';
 import {
   BadgeDollarSign,
   CalendarDays,
+  ChevronRight,
   ChartNoAxesColumnIncreasing,
   House,
   MapPin,
@@ -46,6 +47,7 @@ const interfaceIconComponents = {
   price: BadgeDollarSign,
   medal: Medal,
   calendar: CalendarDays,
+  chevronRight: ChevronRight,
 } as const satisfies Record<string, InterfaceIconComponent>;
 
 type InterfaceIconName = keyof typeof interfaceIconComponents;
@@ -57,6 +59,7 @@ function isInterfaceIconName(icon: string): icon is InterfaceIconName {
 
 export const AppCard = styled(YStack, {
   name: 'AppCard',
+  alignSelf: 'stretch',
   backgroundColor: colors.cardLight,
   borderRadius: radius.lg,
   padding: spacing.lg,
@@ -100,14 +103,14 @@ export function Card({
   if (href) {
     return (
       <Link href={href} asChild>
-        <AppCard tone={tone} pressStyle={{ opacity: 0.9 }}>
+        <AppCard tone={tone} pressStyle={{ opacity: 0.9 }} style={{ boxSizing: 'border-box' } as never}>
           {children}
         </AppCard>
       </Link>
     );
   }
 
-  return <AppCard tone={tone}>{children}</AppCard>;
+  return <AppCard tone={tone} style={{ boxSizing: 'border-box' } as never}>{children}</AppCard>;
 }
 
 export function SectionHeader({ title, action }: { title: string; action?: string }) {
@@ -301,8 +304,8 @@ export function SecondaryButton({ label, href }: { label: string; href: string }
 export function InfoGrid({ items }: { items: Array<{ label: string; value: string | number }> }) {
   return (
     <XStack flexWrap="wrap" marginHorizontal={-5} marginTop={spacing.md}>
-      {items.map((item) => (
-        <YStack key={item.label} width="50%" paddingHorizontal={5} marginBottom={spacing.md}>
+      {items.map((item, index) => (
+        <YStack key={`${item.label}-${index}`} width="50%" paddingHorizontal={5} marginBottom={spacing.md}>
           <Text color={colors.textMuted} fontSize={12} marginBottom={3}>
             {item.label}
           </Text>
@@ -315,31 +318,58 @@ export function InfoGrid({ items }: { items: Array<{ label: string; value: strin
   );
 }
 
-export function StatRow({ items }: { items: Array<{ label: string; value: string | number; icon?: string }> }) {
+export function StatRow({
+  items,
+  compact = false,
+}: {
+  items: Array<{ label: string; value: string | number; icon?: string }>;
+  compact?: boolean;
+}) {
+  const itemWidth = `${100 / items.length - 2}%`;
+
   return (
-    <XStack gap={spacing.sm} marginBottom={spacing.md}>
+    <XStack justifyContent="space-between" marginBottom={spacing.md} style={{ boxSizing: 'border-box' } as never}>
       {items.map((item) => (
         <YStack
           key={item.label}
-          flex={1}
+          width={itemWidth}
           backgroundColor={colors.cardLight}
           borderRadius={radius.md}
-          borderWidth={1}
-          borderColor={colors.line}
-          padding={spacing.md}
+          padding={compact ? spacing.sm : spacing.md}
+          gap={spacing.xs}
         >
-          {item.icon ? (
-            <IconBadge icon={item.icon} tone="quiet" />
-          ) : null}
-          <Text color={colors.textPrimary} fontSize={20} fontWeight="700">
-            {item.value}
-          </Text>
-          <Text color={colors.textMuted} fontSize={12} marginTop={3}>
+          <XStack alignItems="center" gap={spacing.sm}>
+            {item.icon ? (
+              <IconBadge icon={item.icon} tone="quiet" />
+            ) : null}
+            <Text color={colors.textPrimary} fontSize={compact ? 17 : 20} fontWeight="700">
+              {item.value}
+            </Text>
+          </XStack>
+          <Text color={colors.textMuted} fontSize={compact ? 11 : 12} marginTop={3}>
             {item.label}
           </Text>
         </YStack>
       ))}
     </XStack>
+  );
+}
+
+export function EmptyPanel({ title, body }: { title: string; body?: string }) {
+  return (
+    <YStack
+      borderRadius={radius.lg}
+      borderWidth={1}
+      borderColor={colors.borderSoft}
+      backgroundColor={colors.cardDark}
+      padding={spacing.lg}
+      gap={spacing.xs}
+    >
+      <Text color={colors.textPrimary} fontSize={16} fontWeight="700">
+        {title}
+      </Text>
+      {body ? <Text {...typography.meta}>{body}</Text> : null}
+    </YStack>
   );
 }
 

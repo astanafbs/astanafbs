@@ -1,8 +1,16 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'FBS Astana Admin',
-  description: 'Admin panel for FBS Astana',
+  title: 'BilliardHub',
+  description: 'BilliardHub admin panel',
+  icons: {
+    icon: '/favicon.svg',
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
