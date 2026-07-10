@@ -24,6 +24,7 @@ module.exports = {
       bundleIdentifier: iosBundleIdentifier,
       infoPlist: {
         CFBundleDisplayName: 'BilliardHUB',
+        ITSAppUsesNonExemptEncryption: false,
         UIBackgroundModes: ['fetch', 'remote-notification'],
         NSUserNotificationsUsageDescription:
           'BilliardHUB отправляет уведомления о турнирах, матчах, трансляциях, объявлениях, новостях и дуэлях.',
