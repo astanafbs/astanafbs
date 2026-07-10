@@ -1,4 +1,4 @@
-const iosBundleIdentifier = process.env.IOS_BUNDLE_IDENTIFIER ?? 'kz.fbsastana.app';
+const iosBundleIdentifier = process.env.IOS_BUNDLE_IDENTIFIER ?? 'com.armanualy.billiardhub';
 const androidPackage = process.env.ANDROID_PACKAGE ?? 'kz.fbsastana.app';
 const easProjectId =
   process.env.EXPO_PUBLIC_EAS_PROJECT_ID ?? 'f466de29-d1c9-42d2-a8fb-5bfcacfdf58b';
