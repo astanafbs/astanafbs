@@ -1,0 +1,92 @@
+{
+  "configVersion": 0,
+  "apple": {
+    "version": "1.0",
+    "copyright": "2026 BilliardHUB / FBS Kazakhstan",
+    "categories": ["SPORTS", "LIFESTYLE"],
+    "release": {
+      "automaticRelease": true
+    },
+    "review": {
+      "firstName": "Arman",
+      "lastName": "Ualy",
+      "email": "info@fbs.kz",
+      "phone": "+77776355415",
+      "demoRequired": false,
+      "notes": "The app is a billiards community platform for tournaments, ratings, clubs, duels, live streams, listings, news, and player profiles. Core public sections can be reviewed without signing in. Google Sign-In is used for profile and registration actions. The app does not include real-money gambling, casino games, betting, or simulated gambling."
+    },
+    "info": {
+      "en-US": {
+        "title": "BilliardHUB",
+        "subtitle": "Billiards tournaments",
+        "description": "BilliardHUB connects billiards players, clubs, and tournament organizers in Kazakhstan.\n\nUse the app to discover upcoming tournaments, follow brackets and match results, browse player ratings, find clubs, create and confirm duels, watch available streams, read news, and manage your player profile.\n\nFor organizers and clubs, BilliardHUB supports structured tournament data, player registration, match schedules, ratings, and club-related workflows through the connected backend and admin tools.\n\nKey features:\n- Tournament listings with registration, formats, brackets, players, matches, and results\n- Player ratings, profiles, match history, and club information\n- Club discovery and city-based billiards community navigation\n- Duels between players with confirmation and rating context\n- Streams, news, listings, and notifications for billiards events\n\nBilliardHUB is designed for the billiards community and does not provide betting, casino games, real-money gambling, or simulated gambling.",
+        "keywords": [
+          "billiards",
+          "billiard",
+          "pool",
+          "tournaments",
+          "ratings",
+          "clubs",
+          "duels",
+          "kazakhstan",
+          "astana"
+        ],
+        "releaseNotes": "Initial App Store release with tournaments, ratings, clubs, duels, streams, listings, news, profiles, and push notifications.",
+        "promoText": "Follow billiards tournaments, ratings, clubs, duels, streams, and player profiles in one app.",
+        "supportUrl": "https://api.75.119.131.165.sslip.io/support",
+        "privacyPolicyUrl": "https://api.75.119.131.165.sslip.io/privacy",
+        "privacyChoicesUrl": "https://api.75.119.131.165.sslip.io/privacy"
+      },
+      "ru": {
+        "title": "BilliardHUB",
+        "subtitle": "Турниры по бильярду",
+        "description": "BilliardHUB объединяет игроков, клубы и организаторов бильярдных турниров в Казахстане.\n\nВ приложении можно находить турниры, смотреть сетки и результаты матчей, отслеживать рейтинги игроков, находить клубы, создавать и подтверждать дуэли, смотреть доступные трансляции, читать новости и управлять профилем игрока.\n\nДля организаторов и клубов BilliardHUB поддерживает структурированные данные турниров, регистрацию игроков, расписание матчей, рейтинги и клубные процессы через подключенную серверную часть и админ-панель.\n\nОсновные возможности:\n- список турниров, регистрация, форматы, сетки, участники, матчи и результаты\n- рейтинги игроков, профили, история матчей и информация о клубах\n- поиск клубов и городская навигация по бильярдному сообществу\n- дуэли между игроками с подтверждением и рейтингом\n- трансляции, новости, объявления и уведомления о событиях\n\nBilliardHUB создан для бильярдного сообщества и не содержит ставок, казино, азартных игр на деньги или имитации азартных игр.",
+        "keywords": [
+          "бильярд",
+          "турниры",
+          "рейтинг",
+          "клубы",
+          "дуэли",
+          "трансляции",
+          "казахстан",
+          "астана",
+          "спорт"
+        ],
+        "releaseNotes": "Первый релиз в App Store: турниры, рейтинги, клубы, дуэли, трансляции, объявления, новости, профили и push-уведомления.",
+        "promoText": "Турниры, рейтинги, клубы, дуэли, трансляции и профили игроков в одном приложении.",
+        "supportUrl": "https://api.75.119.131.165.sslip.io/support",
+        "privacyPolicyUrl": "https://api.75.119.131.165.sslip.io/privacy",
+        "privacyChoicesUrl": "https://api.75.119.131.165.sslip.io/privacy"
+      }
+    },
+    "advisory": {
+      "ageRatingOverride": "NONE",
+      "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+      "contests": "INFREQUENT_OR_MILD",
+      "gambling": false,
+      "gamblingSimulated": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "kidsAgeBand": null,
+      "koreaAgeRatingOverride": "NONE",
+      "lootBox": false,
+      "matureOrSuggestiveThemes": "NONE",
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "sexualContentGraphicAndNudity": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "unrestrictedWebAccess": false,
+      "violenceCartoonOrFantasy": "NONE",
+      "violenceRealistic": "NONE",
+      "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+      "advertising": false,
+      "ageAssurance": false,
+      "ageRatingOverrideV2": "NONE",
+      "developerAgeRatingInfoUrl": null,
+      "gunsOrOtherWeapons": "NONE",
+      "healthOrWellnessTopics": false,
+      "messagingAndChat": false,
+      "parentalControls": false,
+      "userGeneratedContent": true
+    }
+  }
+}

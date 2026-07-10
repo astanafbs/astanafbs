@@ -658,6 +658,52 @@ async function generateSingleEliminationForTournament(tournamentId: string) {
   };
 }
 
+function legalPage(title: string, updatedAt: string, sections: Array<{ title: string; body: string }>) {
+  const htmlSections = sections
+    .map(
+      (section) => `
+        <section>
+          <h2>${section.title}</h2>
+          <p>${section.body}</p>
+        </section>`,
+    )
+    .join('');
+
+  return `<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>${title} | BilliardHUB</title>
+    <style>
+      :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      body { margin: 0; background: #f7f7f3; color: #18211d; }
+      main { max-width: 760px; margin: 0 auto; padding: 40px 20px 56px; }
+      header, section, footer { background: #fff; border: 1px solid #e4e1d8; border-radius: 8px; padding: 22px; margin-bottom: 14px; }
+      h1 { margin: 0 0 8px; font-size: 32px; line-height: 1.15; }
+      h2 { margin: 0 0 10px; font-size: 20px; line-height: 1.25; }
+      p { margin: 0; font-size: 16px; line-height: 1.6; }
+      a { color: #126b45; }
+      .muted { color: #66736b; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>${title}</h1>
+        <p class="muted">Дата обновления: ${updatedAt}</p>
+      </header>
+      ${htmlSections}
+      <footer>
+        <h2>Контакты</h2>
+        <p>BilliardHUB / FBS Kazakhstan</p>
+        <p class="muted">+7 777 635 54 15<br />Астана, ул. Тауелсыздык 21/5<br /><a href="mailto:info@fbs.kz">info@fbs.kz</a></p>
+      </footer>
+    </main>
+  </body>
+</html>`;
+}
+
 await app.register(cors, {
   origin: env.corsOrigin === '*' ? true : env.corsOrigin.split(','),
   credentials: true,
@@ -666,6 +712,81 @@ await app.register(cors, {
 app.get('/health', async () => {
   await query('select 1');
   return { ok: true, service: 'fbs-astana-api' };
+});
+
+app.get('/privacy', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(legalPage('Политика конфиденциальности', '8 мая 2026', [
+    {
+      title: 'Какие данные обрабатываются',
+      body:
+        'BilliardHUB может обрабатывать имя, фото профиля, город, клуб, рейтинг, историю игр, заявки на турниры, объявления, заказы, push-токены и технические данные устройства.',
+    },
+    {
+      title: 'Для чего используются данные',
+      body:
+        'Данные нужны для входа через Google, ведения профиля игрока, регистрации на турниры, рейтингов, дуэлей, уведомлений, работы объявлений, магазина и поддержки пользователей.',
+    },
+    {
+      title: 'Сторонние сервисы',
+      body:
+        'В приложении могут использоваться Google Sign-In, YouTube, аналитика, push-уведомления и серверы BilliardHUB. Эти сервисы могут обрабатывать данные по своим правилам.',
+    },
+    {
+      title: 'Хранение и безопасность',
+      body:
+        'Данные хранятся только в объеме, необходимом для работы сервиса. Мы применяем технические меры защиты, ограничиваем доступ к административным функциям и используем защищенные каналы передачи данных.',
+    },
+    {
+      title: 'Права пользователя',
+      body:
+        'Пользователь может запросить уточнение, исправление или удаление персональных данных, а также отказаться от уведомлений в настройках устройства или приложения.',
+    },
+  ]));
+});
+
+app.get('/terms', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(legalPage('Условия использования', '8 мая 2026', [
+    {
+      title: 'Назначение сервиса',
+      body:
+        'BilliardHUB предоставляет цифровую платформу для бильярдных турниров, рейтингов, клубов, дуэлей, трансляций, объявлений, магазина и пользовательских профилей.',
+    },
+    {
+      title: 'Аккаунт пользователя',
+      body:
+        'Пользователь отвечает за актуальность данных профиля, корректность заявок и действия, совершенные через его аккаунт. Вход может выполняться через Google.',
+    },
+    {
+      title: 'Турниры и заявки',
+      body:
+        'Регистрация на турнир может требовать подтверждения организатором. Организатор вправе закрыть регистрацию, изменить расписание, отклонить заявку или отменить событие при необходимости.',
+    },
+    {
+      title: 'Объявления и магазин',
+      body:
+        'Пользователь несет ответственность за достоверность объявлений, описаний товаров и услуг. Запрещены незаконные товары, спам, вводящая в заблуждение информация и чужие материалы без разрешения.',
+    },
+    {
+      title: 'Ограничение ответственности',
+      body:
+        'BilliardHUB не гарантирует отсутствие технических сбоев, ошибок сторонних сервисов или изменений расписания клубов и турниров. Мы стараемся поддерживать данные актуальными и исправлять ошибки после обращения.',
+    },
+  ]));
+});
+
+app.get('/support', async (_request, reply) => {
+  return reply.type('text/html; charset=utf-8').send(legalPage('Поддержка BilliardHUB', '8 мая 2026', [
+    {
+      title: 'Как получить помощь',
+      body:
+        'Напишите нам, если нужна помощь с аккаунтом, турниром, рейтингом, дуэлью, объявлением, трансляцией или уведомлениями.',
+    },
+    {
+      title: 'Что указать в обращении',
+      body:
+        'Укажите имя профиля, город, клуб или турнир, описание проблемы и контакт для обратной связи. Это помогает быстрее проверить данные и исправить ошибку.',
+    },
+  ]));
 });
 
 app.post('/auth/firebase', async (request, reply) => {
