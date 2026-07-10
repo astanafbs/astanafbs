@@ -85,7 +85,7 @@ INSERT INTO tournaments (
 )
 VALUES
   ('44444444-4444-4444-4444-444444444444', 'FBS Astana Open', 'registration_open', now() + interval '12 days', now() + interval '12 days 8 hours', '11111111-1111-1111-1111-111111111111', 'пр. Кабанбай Батыра, 46', 'Москва', 1000000, 'KZT', 32, 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'cccccccc-cccc-cccc-cccc-cccccccccccc', 'dddddddd-dddd-dddd-dddd-dddddddddddd'),
-  ('55555555-5555-5555-5555-555555555555', 'Лига ветеранов', 'registration_open', now() + interval '19 days', now() + interval '19 days 6 hours', '22222222-2222-2222-2222-222222222222', 'ул. Сыганак, 18', 'Комби', 700000, 'KZT', 24, NULL, NULL, NULL, NULL),
+  ('55555555-5555-5555-5555-555555555555', 'Лига ветеранов', 'registration_open', now() + interval '19 days', now() + interval '19 days 6 hours', '22222222-2222-2222-2222-222222222222', 'ул. Сыганак, 18', 'Комби', 700000, 'KZT', 32, NULL, NULL, NULL, NULL),
   ('66666666-6666-6666-6666-666666666666', 'Summer Cup Qualifier', 'draft', now() + interval '27 days', now() + interval '27 days 8 hours', '33333333-3333-3333-3333-333333333333', 'ул. Туран, 12', 'Невка', 1500000, 'KZT', 32, NULL, NULL, NULL, NULL)
 ON CONFLICT (id) DO UPDATE
 SET title = EXCLUDED.title,
